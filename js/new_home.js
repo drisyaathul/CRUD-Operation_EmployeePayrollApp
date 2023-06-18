@@ -11,15 +11,12 @@ const createInnerHtml = () => {
         <th>Salary</th>
         <th>Start Date</th>
         <th>Actions</th>`;
-
+    let innerHtml = '${headerHtml}';
     let employeePayrollDataList = createEmployeePayrollJSON();
-    if(employeePayrollDataList.length == 0) return;
-    let innerHtml = `${headerHtml}`;
     for(const employeePayrollData of employeePayrollDataList){
         innerHtml = `${innerHtml}
         <tr>
-        <td>
-        <img class="profile" src="${employeePayrollData._profileImage}" alt="profile_img-1"></td>
+        <td><img class="profile" src="${employeePayrollData._profilepic}" alt=""></td>
         <td>${employeePayrollData._name}</td>
         <td>${employeePayrollData._gender}</td>
         <td>${getDepartmentHtml(employeePayrollData._department)}</td>      
@@ -31,5 +28,42 @@ const createInnerHtml = () => {
         </td>
         </tr>`;
     }
-    document.querySelector('#display').innerHTML = innerHtml;
+    document.querySelector('#table-isplay').innerHTML = innerHtml;
+}
+//UC5:
+const getDepartmentHtml = (departmentList) => {
+    let departmentHtml = '';
+    for(const department of departmentList){
+      departmentHtml = `${departmentHtml} <div class='dept-label'>${department}</div>`
+    }
+    return departmentHtml;
+}
+const createEmployeePayrollJSON = () => {
+    let employeePayrollListLocal = [
+      {
+        _name: 'Drisya',
+        _gender: 'Female',
+        _department: [
+          'Engineer'
+        ],
+        _salary: 450000,
+        _startDate: '20 Jul 2016',
+        _note: 'Test',
+        _id: new Date().getTime(),
+        _profileImage: './assets/profile-images/img4.png' 
+      },
+      {
+        _name: 'Karthik',
+        _gender: 'Male',
+        _department: [
+          'Engineer'
+        ],
+        _salary: 400000,
+        _startDate: '02 Mar 2020',
+        _note: 'Test to JSON',
+        _id: new Date().getTime(),
+        _profileImage: './assets/profile-images/img3.png'
+      }
+    ];
+    return localStorage.getItem("employeePayrollList");
 }

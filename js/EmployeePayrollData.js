@@ -1,4 +1,4 @@
-class EmployeeParollData{
+class EmployeePayrollData{
 
 //getter and setter method
     get id(){ 
@@ -12,7 +12,7 @@ class EmployeeParollData{
         return this._name;
     }
     set name(name){
-        let nameRegex=RegExp('^[A-Z]{1}{a-zA-Z}{2,}$')
+        let nameRegex=RegExp('^[A-Z]{1}{a-z}{2,}$')
         if(nameRegex.test(name)){
             this._name=name;
         }
