@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
 });
 //Template literal ES6 feature
 const createInnerHtml = () => {
-    const headerHtml = `
+    const innerHtml = `
     <tr>
        <th>Profile</th>
         <th>Name</th>
