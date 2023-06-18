@@ -1,33 +1,35 @@
 window.addEventListener('DOMContentLoaded',(event) => {
     createInnerHtml();
-});
-//Template literal ES6 feature
+})
+
 const createInnerHtml = () => {
-    const innerHtml = `
-    <tr>
-       <th>Profile</th>
+    const headerHtml =
+       `<th>Profile</th>
         <th>Name</th>
         <th>Gender</th>
         <th>Department</th>
         <th>Salary</th>
         <th>Start Date</th>
-        <th>Actions</th>
-    </tr>
+        <th>Actions</th>`;
+
+    let employeePayrollDataList = createEmployeePayrollJSON();
+    if(employeePayrollDataList.length == 0) return;
+    let innerHtml = `${headerHtml}`;
+    for(const employeePayrollData of employeePayrollDataList){
+        innerHtml = `${innerHtml}
         <tr>
-        <td><img class="profile" src="./assets/profile-images/img1.png" width="40%" height="40px" alt="profile_img-1"></td>
-        <td>Narayanan Mahadevan</td>
-        <td>Male</td>
         <td>
-        <div class='dept-label'>HR</div>
-        <div class='dept-label'>Finance</div>
-        </td>      
-        <td>3000000</td>
-        <td>1 Nov 2020</td>
+        <img class="profile" src="${employeePayrollData._profileImage}" alt="profile_img-1"></td>
+        <td>${employeePayrollData._name}</td>
+        <td>${employeePayrollData._gender}</td>
+        <td>${getDepartmentHtml(employeePayrollData._department)}</td>      
+        <td>${employeePayrollData._salary}</td>
+        <td>${employeePayrollData._startDate}</td>
         <td>
-        <img name="1" onclick="remove(this)" src="./assets/profile-images/delete-black-18dp.svg" alt="delete">
-        <img name="1" onclick="update(this)" src="./assets/profile-images/create-black-18dp.svg" alt="edit">
+        <img src="./assets/profile-images/delete-black-18dp.svg" alt="delete" id="1" onclick="remove(this)">
+        <img src="./assets/profile-images/create-black-18dp.svg" alt="edit" id="1" onclick="update(this)">
         </td>
-        </tr>
-        `;
-    document.querySelector('#table-display').innerHTML = innerHtml;
+        </tr>`;
+    }
+    document.querySelector('#display').innerHTML = innerHtml;
 }
